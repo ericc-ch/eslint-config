@@ -35,5 +35,13 @@ export const typescript = (
         tsconfigRootDir: process.cwd(),
       },
     },
+    rules: {
+      '@typescript-eslint/no-misused-promises': [
+        'error',
+        {
+          checksVoidReturn: false,
+        },
+      ],
+    },
   })
 }
