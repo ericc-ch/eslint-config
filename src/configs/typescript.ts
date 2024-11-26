@@ -42,6 +42,12 @@ export const typescript = (
           checksVoidReturn: false,
         },
       ],
+      '@typescript-eslint/restrict-template-expressions': [
+        'error',
+        {
+          allowNumber: true,
+        },
+      ],
     },
   })
 }
