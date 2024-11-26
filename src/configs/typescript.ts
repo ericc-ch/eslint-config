@@ -1,6 +1,7 @@
 import eslint from '@eslint/js'
 import defu from 'defu'
 import globals from 'globals'
+import process from 'node:process'
 import typescriptPlugin from 'typescript-eslint'
 
 export interface TypeScriptOptions {
@@ -27,6 +28,11 @@ export const typescript = (
       globals: {
         ...globals.browser,
         ...globals.node,
+      },
+      // Can be replaced
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: process.cwd(),
       },
     },
   })
