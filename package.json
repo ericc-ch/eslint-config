@@ -33,6 +33,7 @@
     "typescript-eslint": "^8.16.0"
   },
   "devDependencies": {
+    "@types/node": "^22.10.0",
     "jiti": "^2.4.0",
     "typescript": "^5.7.2",
     "unbuild": "^2.0.0"
