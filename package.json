@@ -1,0 +1,44 @@
+{
+  "name": "@echristian/eslint-config",
+  "version": "0.0.1",
+  "description": "Erick's ESLint config",
+  "keywords": [
+    "eslint-config"
+  ],
+  "license": "MIT",
+  "author": "Erick Christian <erickchristian48@gmail.com> (https://github.com/ericc-ch)",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/main.mjs"
+    }
+  },
+  "main": "./dist/main.mjs",
+  "types": "./dist/main.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "lint": "eslint . --flag unstable_ts_config",
+    "prepack": "unbuild"
+  },
+  "dependencies": {
+    "@eslint/js": "^9.15.0",
+    "@stylistic/eslint-plugin": "^2.11.0",
+    "defu": "^6.1.4",
+    "eslint-plugin-perfectionist": "^4.1.2",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "globals": "^15.12.0",
+    "typescript-eslint": "^8.16.0"
+  },
+  "devDependencies": {
+    "jiti": "^2.4.0",
+    "typescript": "^5.7.2",
+    "unbuild": "^2.0.0"
+  },
+  "peerDependencies": {
+    "eslint": ">= 9.0.0"
+  },
+  "packageManager": "pnpm@9.14.2"
+}
