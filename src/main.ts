@@ -2,6 +2,7 @@ import defu from "defu";
 import typescriptPlugin from "typescript-eslint";
 
 import { imports } from "./configs/imports";
+import { jsx } from "./configs/jsx";
 import { perfectionist } from "./configs/perfectionist";
 import { prettier } from "./configs/prettier";
 import { typescript, TypeScriptOptions } from "./configs/typescript";
@@ -38,7 +39,7 @@ const eslintConfig = (
         perfectionist(),
         prettier(),
         // stylistic(),
-        // ...(optionsWithDefaults.jsx ? [jsx()] : []),
+        ...(optionsWithDefaults.jsx ? [jsx()] : []),
       ],
     },
     ...additionalConfigs,

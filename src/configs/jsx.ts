@@ -3,7 +3,19 @@ import typescriptPlugin from "typescript-eslint";
 
 export const jsx = (): ReturnType<typeof typescriptPlugin.config> => {
   return typescriptPlugin.config({
-    // @ts-expect-error I don't know why but the typing doesn't match
-    extends: [stylisticPlugin.configs.customize({ jsx: true })],
+    plugins: {
+      "@stylistic": stylisticPlugin,
+    },
+    rules: {
+      "@stylistic/jsx-sort-props": [
+        "error",
+        {
+          ignoreCase: true,
+          callbacksLast: true,
+          shorthandFirst: true,
+          reservedFirst: true,
+        },
+      ],
+    },
   });
 };
