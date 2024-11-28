@@ -10,7 +10,7 @@ import { typescript, TypeScriptOptions } from "./configs/typescript";
 type AdditionalConfigs = Parameters<typeof typescriptPlugin.config>;
 
 interface ESLintConfigOptions {
-  ignores?: string[];
+  ignores?: Array<string>;
   jsx?: boolean;
   typescript?: boolean;
   typescriptOptions?: TypeScriptOptions;
@@ -38,7 +38,6 @@ const eslintConfig = (
         imports(),
         perfectionist(),
         prettier(),
-        // stylistic(),
         ...(optionsWithDefaults.jsx ? [jsx()] : []),
       ],
     },

@@ -23,13 +23,15 @@ export const typescript = (
       optionsWithDefaults.typeChecked ?
         typescriptPlugin.configs.strictTypeChecked
       : typescriptPlugin.configs.strict,
+      optionsWithDefaults.typeChecked ?
+        typescriptPlugin.configs.stylisticTypeChecked
+      : typescriptPlugin.configs.stylistic,
     ],
     languageOptions: {
       globals: {
         ...globals.browser,
         ...globals.node,
       },
-      // Can be replaced
       parserOptions: {
         projectService: true,
         tsconfigRootDir: process.cwd(),
@@ -48,6 +50,7 @@ export const typescript = (
           allowNumber: true,
         },
       ],
+      "@typescript-eslint/array-type": ["error", { default: "generic" }],
     },
   });
 };
