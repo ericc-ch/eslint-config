@@ -24,9 +24,9 @@ pnpm add -D @echristian/eslint-config eslint
 
 ## Usage
 
-Create an `eslint.config.js` (or `eslint.config.ts`) file in your project root:
+Create an `eslint.config.js` file in your project root:
 
-```typescript
+```javascript
 import eslintConfig from "@echristian/eslint-config";
 
 export default eslintConfig({
@@ -38,7 +38,7 @@ export default eslintConfig({
 
 ### Basic TypeScript Project with JSX
 
-```typescript
+```javascript
 import eslintConfig from "@echristian/eslint-config";
 
 export default eslintConfig({
@@ -49,7 +49,7 @@ export default eslintConfig({
 
 ### TypeScript Project without Type Checking
 
-```typescript
+```javascript
 import eslintConfig from "@echristian/eslint-config";
 
 export default eslintConfig({
