@@ -16,6 +16,13 @@ export const jsx = (): ReturnType<typeof typescriptPlugin.config> => {
           reservedFirst: true,
         },
       ],
+      "@stylistic/jsx-self-closing-comp": [
+        "error",
+        {
+          component: true,
+          html: false,
+        },
+      ],
     },
   });
 };
