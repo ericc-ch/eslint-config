@@ -1,32 +1,31 @@
-import defu from 'defu'
-import typescriptPlugin from 'typescript-eslint'
+import defu from "defu";
+import typescriptPlugin from "typescript-eslint";
 
-import { imports } from './configs/imports'
-import { jsx } from './configs/jsx'
-import { perfectionist } from './configs/perfectionist'
-import { stylistic } from './configs/stylistic'
-import { typescript, TypeScriptOptions } from './configs/typescript'
+import { imports } from "./configs/imports";
+import { perfectionist } from "./configs/perfectionist";
+import { prettier } from "./configs/prettier";
+import { typescript, TypeScriptOptions } from "./configs/typescript";
 
-type AdditionalConfigs = Parameters<typeof typescriptPlugin.config>
+type AdditionalConfigs = Parameters<typeof typescriptPlugin.config>;
 
 interface ESLintConfigOptions {
-  ignores?: string[]
-  jsx?: boolean
-  typescript?: boolean
-  typescriptOptions?: TypeScriptOptions
+  ignores?: string[];
+  jsx?: boolean;
+  typescript?: boolean;
+  typescriptOptions?: TypeScriptOptions;
 }
 
 const defaultOptions: ESLintConfigOptions = {
-  ignores: ['*.config.*'],
+  ignores: ["*.config.*"],
   jsx: false,
   typescript: true,
-}
+};
 
 const eslintConfig = (
   options?: ESLintConfigOptions,
   ...additionalConfigs: AdditionalConfigs
 ): ReturnType<typeof typescriptPlugin.config> => {
-  const optionsWithDefaults = defu(options, defaultOptions)
+  const optionsWithDefaults = defu(options, defaultOptions);
 
   return typescriptPlugin.config(
     {
@@ -37,12 +36,13 @@ const eslintConfig = (
         typescript(optionsWithDefaults.typescriptOptions),
         imports(),
         perfectionist(),
-        stylistic(),
-        ...(optionsWithDefaults.jsx ? [jsx()] : []),
+        prettier(),
+        // stylistic(),
+        // ...(optionsWithDefaults.jsx ? [jsx()] : []),
       ],
     },
     ...additionalConfigs,
-  )
-}
+  );
+};
 
-export default eslintConfig
+export default eslintConfig;
