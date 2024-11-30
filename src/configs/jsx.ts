@@ -3,6 +3,7 @@ import typescriptPlugin from "typescript-eslint";
 
 export const jsx = (): ReturnType<typeof typescriptPlugin.config> => {
   return typescriptPlugin.config({
+    files: ["**/*.tsx", "**/*.jsx"],
     plugins: {
       "@stylistic": stylisticPlugin,
     },
