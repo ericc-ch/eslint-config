@@ -8,8 +8,8 @@ export const prettier = (): ReturnType<typeof typescriptPlugin.config> => {
       "prettier/prettier": [
         "error",
         {
-          endOfLine: "lf",
           experimentalTernaries: true,
+          semi: false,
         },
       ],
     },
