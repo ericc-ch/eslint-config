@@ -1,5 +1,5 @@
-import prettierPlugin from "eslint-plugin-prettier/recommended";
-import typescriptPlugin from "typescript-eslint";
+import prettierPlugin from "eslint-plugin-prettier/recommended"
+import typescriptPlugin from "typescript-eslint"
 
 export const prettier = (): ReturnType<typeof typescriptPlugin.config> => {
   return typescriptPlugin.config({
@@ -13,5 +13,5 @@ export const prettier = (): ReturnType<typeof typescriptPlugin.config> => {
         },
       ],
     },
-  });
-};
+  })
+}

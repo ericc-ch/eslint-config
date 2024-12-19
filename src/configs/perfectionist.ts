@@ -1,5 +1,5 @@
-import perfectionistPlugin from "eslint-plugin-perfectionist";
-import typescriptPlugin from "typescript-eslint";
+import perfectionistPlugin from "eslint-plugin-perfectionist"
+import typescriptPlugin from "typescript-eslint"
 
 export const perfectionist = (): ReturnType<typeof typescriptPlugin.config> => {
   return typescriptPlugin.config({
@@ -13,5 +13,5 @@ export const perfectionist = (): ReturnType<typeof typescriptPlugin.config> => {
       "perfectionist/sort-modules": "error",
       "perfectionist/sort-named-exports": "error",
     },
-  });
-};
+  })
+}

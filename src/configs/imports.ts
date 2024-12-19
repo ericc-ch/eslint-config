@@ -1,5 +1,5 @@
-import unusedImportsPlugin from "eslint-plugin-unused-imports";
-import typescriptPlugin from "typescript-eslint";
+import unusedImportsPlugin from "eslint-plugin-unused-imports"
+import typescriptPlugin from "typescript-eslint"
 
 export const imports = (): ReturnType<typeof typescriptPlugin.config> => {
   return typescriptPlugin.config({
@@ -9,5 +9,5 @@ export const imports = (): ReturnType<typeof typescriptPlugin.config> => {
     rules: {
       "unused-imports/no-unused-imports": "error",
     },
-  });
-};
+  })
+}

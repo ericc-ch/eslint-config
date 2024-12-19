@@ -1,5 +1,5 @@
-import stylisticPlugin from "@stylistic/eslint-plugin";
-import typescriptPlugin from "typescript-eslint";
+import stylisticPlugin from "@stylistic/eslint-plugin"
+import typescriptPlugin from "typescript-eslint"
 
 export const jsx = (): ReturnType<typeof typescriptPlugin.config> => {
   return typescriptPlugin.config({
@@ -25,5 +25,5 @@ export const jsx = (): ReturnType<typeof typescriptPlugin.config> => {
         },
       ],
     },
-  });
-};
+  })
+}
