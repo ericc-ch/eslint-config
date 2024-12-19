@@ -1,21 +1,21 @@
-import eslint from "@eslint/js";
-import defu from "defu";
-import globals from "globals";
-import process from "node:process";
-import typescriptPlugin from "typescript-eslint";
+import eslint from "@eslint/js"
+import defu from "defu"
+import globals from "globals"
+import process from "node:process"
+import typescriptPlugin from "typescript-eslint"
 
 export interface TypeScriptOptions {
-  typeChecked?: boolean;
+  typeChecked?: boolean
 }
 
 const defaultOptions: TypeScriptOptions = {
   typeChecked: true,
-};
+}
 
 export const typescript = (
   options?: TypeScriptOptions,
 ): ReturnType<typeof typescriptPlugin.config> => {
-  const optionsWithDefaults = defu(options, defaultOptions);
+  const optionsWithDefaults = defu(options, defaultOptions)
 
   return typescriptPlugin.config({
     extends: [
@@ -38,6 +38,18 @@ export const typescript = (
       },
     },
     rules: {
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          args: "all",
+          argsIgnorePattern: "^_",
+          caughtErrors: "all",
+          caughtErrorsIgnorePattern: "^_",
+          destructuredArrayIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          ignoreRestSiblings: true,
+        },
+      ],
       "@typescript-eslint/no-misused-promises": [
         "error",
         {
@@ -52,5 +64,5 @@ export const typescript = (
       ],
       "@typescript-eslint/array-type": ["error", { default: "generic" }],
     },
-  });
-};
+  })
+}
