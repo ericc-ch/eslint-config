@@ -10,7 +10,6 @@ export const perfectionist = (): ReturnType<typeof typescriptPlugin.config> => {
       "perfectionist/sort-array-includes": "error",
       "perfectionist/sort-exports": "error",
       "perfectionist/sort-imports": "error",
-      "perfectionist/sort-modules": "error",
       "perfectionist/sort-named-exports": "error",
     },
   })
