@@ -3,6 +3,7 @@ import typescriptPlugin from "typescript-eslint"
 
 export const reactHooks = (): ReturnType<typeof typescriptPlugin.config> => {
   return typescriptPlugin.config({
+    files: ["**/*.tsx", "**/*.jsx"],
     plugins: {
       "react-hooks": reactHooksPlugin,
     },
