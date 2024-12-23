@@ -11,13 +11,18 @@ type AdditionalConfigs = Parameters<typeof typescriptPlugin.config>
 
 interface ESLintConfigOptions {
   ignores?: Array<string>
-  typescript?: boolean
-  typescriptOptions?: TypeScriptOptions
+  typescript?: {
+    enabled: boolean
+    options?: TypeScriptOptions
+  }
+  
 }
 
 const defaultOptions: ESLintConfigOptions = {
   ignores: ["*.config.*"],
-  typescript: true,
+  typescript: {
+    enabled: true,
+  }
 }
 
 const eslintConfig = (
@@ -32,7 +37,7 @@ const eslintConfig = (
     },
     {
       extends: [
-        typescript(optionsWithDefaults.typescriptOptions),
+        typescript(optionsWithDefaults.typescript?.options),
         imports(),
         perfectionist(),
         prettier(),
