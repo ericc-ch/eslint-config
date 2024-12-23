@@ -28,8 +28,9 @@
     "@stylistic/eslint-plugin": "^2.12.1",
     "defu": "^6.1.4",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-perfectionist": "^4.3.0",
+    "eslint-plugin-perfectionist": "^4.4.0",
     "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-unused-imports": "^4.1.4",
     "globals": "^15.14.0",
     "typescript-eslint": "^8.18.1"
@@ -44,5 +45,5 @@
     "eslint": ">= 9.0.0",
     "prettier": ">=3.0.0"
   },
-  "packageManager": "pnpm@9.15.0"
+  "packageManager": "pnpm@9.15.1"
 }
