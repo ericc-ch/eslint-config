@@ -63,6 +63,10 @@ export const typescript = (
         },
       ],
       "@typescript-eslint/array-type": ["error", { default: "generic" }],
+      "@typescript-eslint/no-unnecessary-condition": [
+        "error",
+        { allowConstantLoopConditions: true },
+      ],
     },
   })
 }
