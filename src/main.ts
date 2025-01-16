@@ -1,4 +1,5 @@
 import defu from "defu"
+import gitignore from "eslint-config-flat-gitignore"
 import typescriptPlugin from "typescript-eslint"
 
 import { imports } from "./configs/imports"
@@ -22,7 +23,7 @@ interface ESLintConfigOptions {
 }
 
 const defaultOptions: ESLintConfigOptions = {
-  ignores: ["*.config.*"],
+  ignores: [],
   typescript: {
     enabled: true,
   },
@@ -53,6 +54,7 @@ const eslintConfig = (
     },
     {
       extends: [
+        gitignore(),
         typescript(optionsWithDefaults.typescript.options),
         imports(),
         perfectionist(),
