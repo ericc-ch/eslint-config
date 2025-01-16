@@ -23,7 +23,7 @@ interface ESLintConfigOptions {
 }
 
 const defaultOptions: ESLintConfigOptions = {
-  ignores: ["*.config.*"],
+  ignores: ["eslint.config.*"],
   typescript: {
     enabled: true,
   },
