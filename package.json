@@ -1,27 +1,39 @@
 {
   "name": "@echristian/eslint-config",
   "version": "0.0.16",
-  "description": "Erick's ESLint config",
+  "description": "ericc-ch ESLint config",
   "keywords": [
     "eslint-config"
   ],
-  "license": "MIT",
-  "author": "Erick Christian <erickchristian48@gmail.com> (https://github.com/ericc-ch)",
+  "homepage": "https://github.com/ericc-ch/eslint-config",
+  "bugs": "https://github.com/ericc-ch/eslint-config/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericc-ch/eslint-config.git"
+  },
+  "author": "Erick Christian <erickchristian48@gmail.com>",
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/main.mjs"
+      "types": "./dist/main.d.ts",
+      "default": "./dist/main.mjs"
     }
   },
-  "main": "./dist/main.mjs",
-  "types": "./dist/main.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "unbuild",
+    "build": "tsup",
     "lint": "eslint . --flag unstable_ts_config",
-    "prepack": "unbuild"
+    "prepack": "pnpm run build",
+    "prepare": "simple-git-hooks",
+    "release": "bumpp && pnpm publish --access public"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
   },
   "dependencies": {
     "@eslint/js": "^9.19.0",
@@ -39,7 +51,11 @@
   },
   "devDependencies": {
     "@types/node": "^22.13.1",
+    "bumpp": "^10.0.2",
     "jiti": "^2.4.2",
+    "lint-staged": "^15.4.3",
+    "simple-git-hooks": "^2.11.1",
+    "tsup": "^8.3.6",
     "typescript": "^5.7.3",
     "unbuild": "^3.3.1"
   },
@@ -49,7 +65,8 @@
   "packageManager": "pnpm@10.2.1",
   "pnpm": {
     "onlyBuiltDependencies": [
-      "esbuild"
+      "esbuild",
+      "simple-git-hooks"
     ]
   }
 }
