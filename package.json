@@ -33,7 +33,7 @@
     "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
-    "*": "eslint --fix"
+    "*": "pnpm run lint --fix"
   },
   "dependencies": {
     "@eslint/js": "^9.19.0",
