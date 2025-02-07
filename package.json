@@ -24,21 +24,21 @@
     "prepack": "unbuild"
   },
   "dependencies": {
-    "@eslint/js": "^9.18.0",
-    "@stylistic/eslint-plugin": "^2.13.0",
+    "@eslint/js": "^9.19.0",
+    "@stylistic/eslint-plugin": "^3.0.1",
     "defu": "^6.1.4",
-    "eslint-config-flat-gitignore": "^1.0.0",
+    "eslint-config-flat-gitignore": "^2.0.0",
     "eslint-config-prettier": "^10.0.1",
-    "eslint-plugin-perfectionist": "^4.6.0",
-    "eslint-plugin-prettier": "^5.2.2",
+    "eslint-plugin-perfectionist": "^4.8.0",
+    "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-unused-imports": "^4.1.4",
     "globals": "^15.14.0",
     "prettier": "^3.4.2",
-    "typescript-eslint": "^8.20.0"
+    "typescript-eslint": "^8.23.0"
   },
   "devDependencies": {
-    "@types/node": "^22.10.7",
+    "@types/node": "^22.13.1",
     "jiti": "^2.4.2",
     "typescript": "^5.7.3",
     "unbuild": "^3.3.1"
@@ -46,5 +46,10 @@
   "peerDependencies": {
     "eslint": ">= 9.0.0"
   },
-  "packageManager": "pnpm@10.0.0+sha512.b8fef5494bd3fe4cbd4edabd0745df2ee5be3e4b0b8b08fa643aa3e4c6702ccc0f00d68fa8a8c9858a735a0032485a44990ed2810526c875e416f001b17df12b"
+  "packageManager": "pnpm@10.2.1",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
 }
