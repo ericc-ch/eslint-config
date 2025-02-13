@@ -10,6 +10,7 @@ import { packageJson, PackageJsonOptions } from "./configs/package-json"
 import { perfectionist } from "./configs/perfectionist"
 import { prettier } from "./configs/prettier"
 import { reactHooks } from "./configs/react-hooks"
+import { regexp } from "./configs/regexp"
 import { typescript, TypeScriptOptions } from "./configs/typescript"
 
 type AdditionalConfigs = Parameters<typeof typescriptPlugin.config>
@@ -70,12 +71,16 @@ const eslintConfig = (
       extends: [
         gitignore(),
         packageJson(optionsWithDefaults.packageJson.options),
+
         ...optional(optionsWithDefaults.reactHooks.enabled, reactHooks()),
-        jsx(),
         perfectionist(),
         imports(),
         typescript(optionsWithDefaults.typescript.options),
         deMorgan(),
+        regexp(),
+
+        // Stylistic
+        jsx(),
         prettier(),
       ],
     },
