@@ -28,7 +28,7 @@ interface ESLintConfigOptions {
 }
 
 const defaultOptions: RequiredDeep<ESLintConfigOptions> = {
-  ignores: ["eslint.config.*"],
+  ignores: [],
   typescript: {
     enabled: true,
     options: {

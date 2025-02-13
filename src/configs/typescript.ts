@@ -35,7 +35,7 @@ export const typescript = (
       },
       parserOptions: {
         projectService: {
-          allowDefaultProject: ["eslint.config.*"],
+          allowDefaultProject: ["eslint.config.js"],
         },
         tsconfigRootDir: process.cwd(),
       },
