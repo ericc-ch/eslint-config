@@ -1,9 +1,11 @@
 import defu from "defu"
 import gitignore from "eslint-config-flat-gitignore"
+import { RequiredDeep } from "type-fest"
 import typescriptPlugin from "typescript-eslint"
 
 import { imports } from "./configs/imports"
 import { jsx } from "./configs/jsx"
+import { packageJson, PackageJsonOptions } from "./configs/package-json"
 import { perfectionist } from "./configs/perfectionist"
 import { prettier } from "./configs/prettier"
 import { reactHooks } from "./configs/react-hooks"
@@ -20,15 +22,26 @@ interface ESLintConfigOptions {
   reactHooks?: {
     enabled: boolean
   }
+  packageJson?: {
+    options?: PackageJsonOptions
+  }
 }
 
-const defaultOptions: ESLintConfigOptions = {
+const defaultOptions: RequiredDeep<ESLintConfigOptions> = {
   ignores: ["eslint.config.*"],
   typescript: {
     enabled: true,
+    options: {
+      typeChecked: true,
+    },
   },
   reactHooks: {
     enabled: false,
+  },
+  packageJson: {
+    options: {
+      public: true,
+    },
   },
 }
 
@@ -46,7 +59,7 @@ const eslintConfig = (
   const optionsWithDefaults = defu(
     options,
     defaultOptions,
-  ) as Required<ESLintConfigOptions>
+  ) as RequiredDeep<ESLintConfigOptions>
 
   return typescriptPlugin.config(
     {
@@ -55,12 +68,13 @@ const eslintConfig = (
     {
       extends: [
         gitignore(),
-        typescript(optionsWithDefaults.typescript.options),
-        imports(),
-        perfectionist(),
-        prettier(),
-        jsx(),
+        packageJson(optionsWithDefaults.packageJson.options),
         ...optional(optionsWithDefaults.reactHooks.enabled, reactHooks()),
+        jsx(),
+        perfectionist(),
+        imports(),
+        typescript(optionsWithDefaults.typescript.options),
+        prettier(),
       ],
     },
     ...additionalConfigs,

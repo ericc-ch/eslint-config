@@ -41,12 +41,14 @@
     "defu": "^6.1.4",
     "eslint-config-flat-gitignore": "^2.0.0",
     "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-package-json": "^0.26.0",
     "eslint-plugin-perfectionist": "^4.9.0",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-unused-imports": "^4.1.4",
     "globals": "^15.15.0",
     "prettier": "^3.5.1",
+    "prettier-plugin-packagejson": "^2.5.8",
     "typescript-eslint": "^8.24.0"
   },
   "devDependencies": {
@@ -56,6 +58,7 @@
     "lint-staged": "^15.4.3",
     "simple-git-hooks": "^2.11.1",
     "tsup": "^8.3.6",
+    "type-fest": "^4.34.1",
     "typescript": "^5.7.3",
     "unbuild": "^3.3.1"
   },

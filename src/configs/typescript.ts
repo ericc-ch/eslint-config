@@ -18,6 +18,7 @@ export const typescript = (
   const optionsWithDefaults = defu(options, defaultOptions)
 
   return typescriptPlugin.config({
+    ignores: ["**/package.json"],
     extends: [
       eslint.configs.recommended,
       optionsWithDefaults.typeChecked ?
@@ -33,7 +34,9 @@ export const typescript = (
         ...globals.node,
       },
       parserOptions: {
-        projectService: true,
+        projectService: {
+          allowDefaultProject: ["eslint.config.*"],
+        },
         tsconfigRootDir: process.cwd(),
       },
     },
