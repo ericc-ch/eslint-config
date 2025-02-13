@@ -1,6 +1,6 @@
 {
   "name": "@echristian/eslint-config",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "ericc-ch ESLint config",
   "keywords": [
     "eslint-config"
