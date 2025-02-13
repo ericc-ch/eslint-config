@@ -1,3 +1,4 @@
+import json from "@eslint/json"
 import defu from "defu"
 import gitignore from "eslint-config-flat-gitignore"
 import { RequiredDeep } from "type-fest"
@@ -66,6 +67,11 @@ const eslintConfig = (
   return typescriptPlugin.config(
     {
       ignores: optionsWithDefaults.ignores,
+    },
+    {
+      plugins: {
+        json,
+      },
     },
     {
       extends: [

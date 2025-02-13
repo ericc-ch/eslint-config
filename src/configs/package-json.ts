@@ -17,12 +17,6 @@ export const packageJson = (
 
   return typescriptPlugin.config({
     ...packageJsonPlugin,
-    languageOptions: {
-      ...packageJsonPlugin.languageOptions,
-      parserOptions: {
-        extraFileExtensions: [".json"],
-      },
-    },
     rules: {
       "package-json/require-author":
         optionsWithDefaults.public ? "error" : "off",
