@@ -3,6 +3,7 @@ import gitignore from "eslint-config-flat-gitignore"
 import { RequiredDeep } from "type-fest"
 import typescriptPlugin from "typescript-eslint"
 
+import { deMorgan } from "./configs/de-morgan"
 import { imports } from "./configs/imports"
 import { jsx } from "./configs/jsx"
 import { packageJson, PackageJsonOptions } from "./configs/package-json"
@@ -74,6 +75,7 @@ const eslintConfig = (
         perfectionist(),
         imports(),
         typescript(optionsWithDefaults.typescript.options),
+        deMorgan(),
         prettier(),
       ],
     },
