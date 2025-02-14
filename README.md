@@ -34,16 +34,67 @@ export default eslintConfig({
 });
 ```
 
+## Configuration Options
+
+The configuration function accepts an options object with the following structure:
+
+```typescript
+interface ESLintConfigOptions {
+  // Glob patterns to ignore
+  ignores?: Array<string>
+
+  // TypeScript configuration
+  typescript?: {
+    enabled: boolean  // defaults to true
+    options?: {
+      typeChecked?: boolean // defaults to true
+    }
+  }
+
+  // React Hooks configuration
+  reactHooks?: {
+    enabled: boolean // defaults to false
+  }
+
+  // Package.json rules configuration
+  packageJson?: {
+    options?: {
+      public?: boolean // defaults to true
+    }
+  }
+}
+```
+
+Default configuration:
+```javascript
+const defaults = {
+  ignores: [],
+  typescript: {
+    enabled: true,
+    options: {
+      typeChecked: true,
+    },
+  },
+  reactHooks: {
+    enabled: false,
+  },
+  packageJson: {
+    options: {
+      public: true,
+    },
+  },
+}
+```
+
 ## Example Configurations
 
-### Basic TypeScript Project with JSX
+### Basic TypeScript Project
 
 ```javascript
 import eslintConfig from "@echristian/eslint-config";
 
 export default eslintConfig({
   ignores: ["dist/"],
-  jsx: true,
 });
 ```
 
@@ -53,10 +104,38 @@ export default eslintConfig({
 import eslintConfig from "@echristian/eslint-config";
 
 export default eslintConfig({
-  ignores: ["dist/"],
   typescript: {
-    typeChecked: false,
+    enabled: true,
+    options: {
+      typeChecked: false,
+    },
   },
+});
+```
+
+### React Project with Hooks
+
+```javascript
+import eslintConfig from "@echristian/eslint-config";
+
+export default eslintConfig({
+  reactHooks: {
+    enabled: true
+  }
+});
+```
+
+### Private Package Configuration
+
+```javascript
+import eslintConfig from "@echristian/eslint-config";
+
+export default eslintConfig({
+  packageJson: {
+    options: {
+      public: false
+    }
+  }
 });
 ```
 
@@ -65,10 +144,16 @@ export default eslintConfig({
 This config includes the following major dependencies:
 
 - `@eslint/js`: Core ESLint rules
+- `@eslint/json`: JSON support
 - `typescript-eslint`: TypeScript support
 - `@stylistic/eslint-plugin`: Style-related rules
 - `eslint-plugin-unused-imports`: Unused imports management
 - `eslint-plugin-perfectionist`: Additional best practices
+- `eslint-plugin-prettier`: Prettier integration
+- `eslint-plugin-regexp`: Regular expression linting
+- `eslint-plugin-de-morgan`: Logical expression optimization
+- `eslint-plugin-package-json`: Package.json validation
+- `eslint-plugin-react-hooks`: React Hooks linting rules
 
 ## License
 
