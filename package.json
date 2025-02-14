@@ -42,7 +42,7 @@
     "defu": "^6.1.4",
     "eslint-config-flat-gitignore": "^2.0.0",
     "eslint-config-prettier": "^10.0.1",
-    "eslint-plugin-de-morgan": "^1.0.0",
+    "eslint-plugin-de-morgan": "^1.0.1",
     "eslint-plugin-package-json": "^0.26.0",
     "eslint-plugin-perfectionist": "^4.9.0",
     "eslint-plugin-prettier": "^5.2.3",
@@ -66,7 +66,7 @@
   "peerDependencies": {
     "eslint": ">= 9.0.0"
   },
-  "packageManager": "pnpm@10.3.0",
+  "packageManager": "pnpm@10.4.0",
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild",
