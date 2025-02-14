@@ -51,7 +51,6 @@
     "eslint-plugin-unused-imports": "^4.1.4",
     "globals": "^15.15.0",
     "prettier": "^3.5.1",
-    "prettier-plugin-packagejson": "^2.5.8",
     "typescript-eslint": "^8.24.0"
   },
   "devDependencies": {

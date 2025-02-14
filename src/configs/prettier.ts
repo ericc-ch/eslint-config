@@ -10,7 +10,6 @@ export const prettier = (): ReturnType<typeof typescriptPlugin.config> => {
         {
           experimentalTernaries: true,
           semi: false,
-          plugins: ["prettier-plugin-packagejson"],
         },
       ],
     },
