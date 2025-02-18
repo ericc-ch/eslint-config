@@ -34,9 +34,7 @@ export const typescript = (
         ...globals.node,
       },
       parserOptions: {
-        projectService: {
-          allowDefaultProject: ["eslint.config.js"],
-        },
+        projectService: true,
         tsconfigRootDir: process.cwd(),
       },
     },
