@@ -3,11 +3,11 @@ import packageJsonPlugin from "eslint-plugin-package-json/configs/recommended"
 import typescriptPlugin from "typescript-eslint"
 
 export interface PackageJsonOptions {
-  public?: boolean
+  package?: boolean
 }
 
 const defaultOptions: PackageJsonOptions = {
-  public: true,
+  package: true,
 }
 
 export const packageJson = (
@@ -18,12 +18,13 @@ export const packageJson = (
   return typescriptPlugin.config({
     ...packageJsonPlugin,
     rules: {
-      "package-json/require-author":
-        optionsWithDefaults.public ? "error" : "off",
+      ...packageJsonPlugin.rules,
+
+      "package-json/require-author": "error",
       "package-json/require-files":
-        optionsWithDefaults.public ? "error" : "off",
+        optionsWithDefaults.package ? "error" : "off",
       "package-json/require-keywords":
-        optionsWithDefaults.public ? "error" : "off",
+        optionsWithDefaults.package ? "error" : "off",
     },
   })
 }

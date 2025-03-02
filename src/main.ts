@@ -43,7 +43,7 @@ const defaultOptions: RequiredDeep<ESLintConfigOptions> = {
   },
   packageJson: {
     options: {
-      public: true,
+      package: true,
     },
   },
 }
