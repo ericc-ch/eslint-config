@@ -1,11 +1,71 @@
 import eslint from "@eslint/js"
 import globals from "globals"
 import process from "node:process"
-import typescriptPlugin from "typescript-eslint"
+import typescriptPlugin, { type configs } from "typescript-eslint"
 
 export interface TypeScriptOptions {
   typeChecked: boolean
 }
+
+type Rules = typeof configs.base.rules
+
+const getJsRules = (): Rules => ({
+  "array-callback-return": "error",
+  "no-constructor-return": "error",
+  "no-promise-executor-return": "error",
+  "no-useless-assignment": "error",
+  "accessor-pairs": "error",
+  "require-atomic-updates": "error",
+  eqeqeq: "error",
+  "default-param-last": "error",
+  "default-case": "error",
+  "default-case-last": "error",
+  "max-params": "error",
+  "guard-for-in": "error",
+  "no-implicit-coercion": "error",
+  "no-lonely-if": "error",
+  "no-magic-numbers": "error",
+  "no-nested-ternary": "error",
+  "no-param-reassign": "error",
+  yoda: "error",
+
+  complexity: ["error", { max: 10 }],
+  "max-depth": ["error", { max: 2 }],
+  "max-nested-callbacks": ["error", { max: 2 }],
+  "max-lines": ["error", { skipBlankLines: true, skipComments: true }],
+  "max-lines-per-function": [
+    "error",
+    { skipBlankLines: true, skipComments: true },
+  ],
+})
+
+const getTsRules = (): Rules => ({
+  "@typescript-eslint/no-unused-vars": [
+    "error",
+    {
+      args: "all",
+      argsIgnorePattern: "^_",
+      caughtErrors: "all",
+      caughtErrorsIgnorePattern: "^_",
+      destructuredArrayIgnorePattern: "^_",
+      varsIgnorePattern: "^_",
+      ignoreRestSiblings: true,
+    },
+  ],
+  "@typescript-eslint/no-misused-promises": [
+    "error",
+    { checksVoidReturn: false },
+  ],
+  "@typescript-eslint/restrict-template-expressions": [
+    "error",
+    { allowNumber: true },
+  ],
+  "@typescript-eslint/array-type": ["error", { default: "generic" }],
+  "@typescript-eslint/no-unnecessary-condition": [
+    "error",
+    { allowConstantLoopConditions: true },
+  ],
+})
 
 export const typescript = (
   options: TypeScriptOptions,
@@ -27,31 +87,8 @@ export const typescript = (
       parserOptions: { projectService: true, tsconfigRootDir: process.cwd() },
     },
     rules: {
-      "@typescript-eslint/no-unused-vars": [
-        "error",
-        {
-          args: "all",
-          argsIgnorePattern: "^_",
-          caughtErrors: "all",
-          caughtErrorsIgnorePattern: "^_",
-          destructuredArrayIgnorePattern: "^_",
-          varsIgnorePattern: "^_",
-          ignoreRestSiblings: true,
-        },
-      ],
-      "@typescript-eslint/no-misused-promises": [
-        "error",
-        { checksVoidReturn: false },
-      ],
-      "@typescript-eslint/restrict-template-expressions": [
-        "error",
-        { allowNumber: true },
-      ],
-      "@typescript-eslint/array-type": ["error", { default: "generic" }],
-      "@typescript-eslint/no-unnecessary-condition": [
-        "error",
-        { allowConstantLoopConditions: true },
-      ],
+      ...getJsRules(),
+      ...getTsRules(),
     },
   })
 }
