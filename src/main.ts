@@ -14,6 +14,7 @@ import { react, ReactOptions } from "./configs/react"
 import { reactHooks } from "./configs/react-hooks"
 import { regexp } from "./configs/regexp"
 import { typescript, TypeScriptOptions } from "./configs/typescript"
+import { unicorn } from "./configs/unicorn"
 
 type AdditionalConfigs = Parameters<typeof typescriptPlugin.config>
 
@@ -71,6 +72,7 @@ const eslintConfig = (
         ...optional(optionsWithDefaults.reactHooks.enabled, reactHooks()),
 
         typescript(optionsWithDefaults.typescript.options),
+        unicorn(),
         imports(),
         deMorgan(),
         regexp(),
