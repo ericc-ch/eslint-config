@@ -9,7 +9,8 @@ import { imports } from "./configs/imports"
 import { jsx } from "./configs/jsx"
 import { packageJson, PackageJsonOptions } from "./configs/package-json"
 import { perfectionist } from "./configs/perfectionist"
-import { prettier } from "./configs/prettier"
+import { prettier, PrettierOptions } from "./configs/prettier"
+import { react, ReactOptions } from "./configs/react"
 import { reactHooks } from "./configs/react-hooks"
 import { regexp } from "./configs/regexp"
 import { typescript, TypeScriptOptions } from "./configs/typescript"
@@ -18,34 +19,24 @@ type AdditionalConfigs = Parameters<typeof typescriptPlugin.config>
 
 interface ESLintConfigOptions {
   ignores?: Array<string>
-  typescript?: {
-    enabled: boolean
-    options?: TypeScriptOptions
-  }
-  reactHooks?: {
-    enabled: boolean
-  }
-  packageJson?: {
-    options?: PackageJsonOptions
-  }
+  typescript?: { options?: TypeScriptOptions }
+
+  react?: { enabled?: boolean; options?: ReactOptions }
+  reactHooks?: { enabled: boolean }
+
+  prettier?: PrettierOptions
+  packageJson?: PackageJsonOptions
 }
 
 const defaultOptions: RequiredDeep<ESLintConfigOptions> = {
   ignores: [],
-  typescript: {
-    enabled: true,
-    options: {
-      typeChecked: true,
-    },
-  },
-  reactHooks: {
-    enabled: false,
-  },
-  packageJson: {
-    options: {
-      package: true,
-    },
-  },
+  typescript: { options: { typeChecked: true } },
+
+  react: { enabled: false, options: { typeChecked: true } },
+  reactHooks: { enabled: false },
+
+  prettier: { plugins: [] },
+  packageJson: { package: false },
 }
 
 function optional(
@@ -65,29 +56,29 @@ const eslintConfig = (
   ) as RequiredDeep<ESLintConfigOptions>
 
   return typescriptPlugin.config(
-    {
-      ignores: optionsWithDefaults.ignores,
-    },
-    {
-      plugins: {
-        json,
-      },
-    },
+    { ignores: optionsWithDefaults.ignores },
+    { plugins: { json } },
     {
       extends: [
         gitignore(),
-        packageJson(optionsWithDefaults.packageJson.options),
+        packageJson(optionsWithDefaults.packageJson),
 
+        // React
+        ...optional(
+          optionsWithDefaults.react.enabled,
+          react(optionsWithDefaults.react.options),
+        ),
         ...optional(optionsWithDefaults.reactHooks.enabled, reactHooks()),
-        perfectionist(),
-        imports(),
+
         typescript(optionsWithDefaults.typescript.options),
+        imports(),
         deMorgan(),
         regexp(),
 
         // Stylistic
         jsx(),
-        prettier(),
+        prettier(optionsWithDefaults.prettier),
+        perfectionist(),
       ],
     },
     ...additionalConfigs,

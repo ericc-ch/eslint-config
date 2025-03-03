@@ -1,42 +1,30 @@
 import eslint from "@eslint/js"
-import defu from "defu"
 import globals from "globals"
 import process from "node:process"
 import typescriptPlugin from "typescript-eslint"
 
 export interface TypeScriptOptions {
-  typeChecked?: boolean
-}
-
-const defaultOptions: TypeScriptOptions = {
-  typeChecked: true,
+  typeChecked: boolean
 }
 
 export const typescript = (
-  options?: TypeScriptOptions,
+  options: TypeScriptOptions,
 ): ReturnType<typeof typescriptPlugin.config> => {
-  const optionsWithDefaults = defu(options, defaultOptions)
+  const configType: keyof typeof typescriptPlugin.configs =
+    options.typeChecked ? "strictTypeChecked" : "strict"
+  const configTypeStylistic: keyof typeof typescriptPlugin.configs =
+    options.typeChecked ? "strictTypeChecked" : "strict"
 
   return typescriptPlugin.config({
     ignores: ["**/package.json"],
     extends: [
       eslint.configs.recommended,
-      optionsWithDefaults.typeChecked ?
-        typescriptPlugin.configs.strictTypeChecked
-      : typescriptPlugin.configs.strict,
-      optionsWithDefaults.typeChecked ?
-        typescriptPlugin.configs.stylisticTypeChecked
-      : typescriptPlugin.configs.stylistic,
+      typescriptPlugin.configs[configType],
+      typescriptPlugin.configs[configTypeStylistic],
     ],
     languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
-      parserOptions: {
-        projectService: true,
-        tsconfigRootDir: process.cwd(),
-      },
+      globals: { ...globals.browser, ...globals.node },
+      parserOptions: { projectService: true, tsconfigRootDir: process.cwd() },
     },
     rules: {
       "@typescript-eslint/no-unused-vars": [
@@ -53,15 +41,11 @@ export const typescript = (
       ],
       "@typescript-eslint/no-misused-promises": [
         "error",
-        {
-          checksVoidReturn: false,
-        },
+        { checksVoidReturn: false },
       ],
       "@typescript-eslint/restrict-template-expressions": [
         "error",
-        {
-          allowNumber: true,
-        },
+        { allowNumber: true },
       ],
       "@typescript-eslint/array-type": ["error", { default: "generic" }],
       "@typescript-eslint/no-unnecessary-condition": [
