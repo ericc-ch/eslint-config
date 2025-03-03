@@ -1,9 +1,11 @@
 import stylisticPlugin from "@stylistic/eslint-plugin"
+import a11yPlugin from "eslint-plugin-jsx-a11y"
 import typescriptPlugin from "typescript-eslint"
 
 export const jsx = (): ReturnType<typeof typescriptPlugin.config> => {
   return typescriptPlugin.config({
-    files: ["**/*.tsx", "**/*.jsx"],
+    extends: [a11yPlugin.flatConfigs.strict],
+    files: ["**/*.tsx"],
     plugins: {
       "@stylistic": stylisticPlugin,
     },
