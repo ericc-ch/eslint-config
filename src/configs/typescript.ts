@@ -24,7 +24,6 @@ const getJsRules = (): Rules => ({
   "guard-for-in": "error",
   "no-implicit-coercion": "error",
   "no-lonely-if": "error",
-  "no-magic-numbers": "error",
   "no-nested-ternary": "error",
   "no-param-reassign": "error",
   yoda: "error",
