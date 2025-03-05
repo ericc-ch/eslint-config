@@ -2,8 +2,10 @@ import prettierPlugin from "eslint-plugin-prettier/recommended"
 import { Config } from "prettier"
 import typescriptPlugin from "typescript-eslint"
 
+export type PrettierOptions = Record<string, unknown> & Config
+
 export const prettier = (
-  options: Config,
+  options: PrettierOptions,
 ): ReturnType<typeof typescriptPlugin.config> => {
   return typescriptPlugin.config({
     extends: [prettierPlugin],
