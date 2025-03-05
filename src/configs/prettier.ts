@@ -1,23 +1,18 @@
 import prettierPlugin from "eslint-plugin-prettier/recommended"
+import { Config } from "prettier"
 import typescriptPlugin from "typescript-eslint"
 
-export interface PrettierOptions {
-  plugins: Array<string>
-}
-
 export const prettier = (
-  options: PrettierOptions,
+  options: Config,
 ): ReturnType<typeof typescriptPlugin.config> => {
   return typescriptPlugin.config({
     extends: [prettierPlugin],
     rules: {
       "prettier/prettier": [
         "error",
+        options,
         {
-          experimentalOperatorPosition: "start",
-          experimentalTernaries: true,
-          semi: false,
-          plugins: options.plugins,
+          usePrettierrc: false,
         },
       ],
     },

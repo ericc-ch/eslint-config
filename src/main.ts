@@ -1,6 +1,7 @@
 import json from "@eslint/json"
 import defu from "defu"
 import gitignore from "eslint-config-flat-gitignore"
+import { Config } from "prettier"
 import { RequiredDeep } from "type-fest"
 import typescriptPlugin from "typescript-eslint"
 
@@ -9,7 +10,7 @@ import { imports } from "./configs/imports"
 import { jsx } from "./configs/jsx"
 import { packageJson, PackageJsonOptions } from "./configs/package-json"
 import { perfectionist } from "./configs/perfectionist"
-import { prettier, PrettierOptions } from "./configs/prettier"
+import { prettier } from "./configs/prettier"
 import { react, ReactOptions } from "./configs/react"
 import { reactHooks } from "./configs/react-hooks"
 import { regexp } from "./configs/regexp"
@@ -25,18 +26,22 @@ interface ESLintConfigOptions {
   react?: { enabled?: boolean; options?: ReactOptions }
   reactHooks?: { enabled: boolean }
 
-  prettier?: PrettierOptions
+  prettier?: Config
   packageJson?: PackageJsonOptions
 }
 
-const defaultOptions: RequiredDeep<ESLintConfigOptions> = {
+const defaultOptions: Required<ESLintConfigOptions> = {
   ignores: [],
   typescript: { options: { typeChecked: true } },
 
   react: { enabled: false, options: { typeChecked: true } },
   reactHooks: { enabled: false },
 
-  prettier: { plugins: [] },
+  prettier: {
+    experimentalOperatorPosition: "start",
+    experimentalTernaries: true,
+    semi: false,
+  },
   packageJson: { package: false },
 }
 
