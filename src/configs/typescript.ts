@@ -29,7 +29,7 @@ const getJsRules = (): Rules => ({
   yoda: "error",
 
   complexity: ["error", { max: 10 }],
-  "max-depth": ["error", { max: 2 }],
+  "max-depth": "error",
   "max-nested-callbacks": ["error", { max: 2 }],
   "max-lines": ["error", { skipBlankLines: true, skipComments: true }],
   "max-lines-per-function": [
