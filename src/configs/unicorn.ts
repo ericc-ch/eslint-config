@@ -78,7 +78,6 @@ export const unicorn = (): ReturnType<typeof typescriptPlugin.config> => {
       "unicorn/prefer-regexp-test": "error",
       "unicorn/prefer-set-has": "error",
       "unicorn/prefer-set-size": "error",
-      "unicorn/prefer-spread": "error",
       "unicorn/prefer-string-raw": "error",
       "unicorn/prefer-string-replace-all": "error",
       "unicorn/prefer-string-slice": "error",
