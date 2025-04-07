@@ -12,7 +12,6 @@ type Rules = typeof configs.base.rules
 const getJsRules = (): Rules => ({
   "array-callback-return": "error",
   "no-constructor-return": "error",
-  "no-promise-executor-return": "error",
   "no-useless-assignment": "error",
   "accessor-pairs": "error",
   "require-atomic-updates": "error",
