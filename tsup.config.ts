@@ -10,6 +10,5 @@ export default defineConfig({
   dts: true,
   removeNodeProtocol: false,
   sourcemap: true,
-  shims: true,
   clean: true,
 })
