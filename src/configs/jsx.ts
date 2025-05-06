@@ -2,9 +2,17 @@ import stylisticPlugin from "@stylistic/eslint-plugin"
 import a11yPlugin from "eslint-plugin-jsx-a11y"
 import typescriptPlugin from "typescript-eslint"
 
-export const jsx = (): ReturnType<typeof typescriptPlugin.config> => {
+import { optional } from "../lib/optional"
+
+export interface JSXOptions {
+  a11y: boolean
+}
+
+export const jsx = (
+  options: JSXOptions,
+): ReturnType<typeof typescriptPlugin.config> => {
   return typescriptPlugin.config({
-    extends: [a11yPlugin.flatConfigs.strict],
+    extends: [...optional(options.a11y, a11yPlugin.flatConfigs.strict)],
     files: ["**/*.tsx"],
     plugins: {
       "@stylistic": stylisticPlugin,

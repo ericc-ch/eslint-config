@@ -15,6 +15,7 @@ import { reactHooks } from "./configs/react-hooks"
 import { regexp } from "./configs/regexp"
 import { typescript, TypeScriptOptions } from "./configs/typescript"
 import { unicorn } from "./configs/unicorn"
+import { optional } from "./lib/optional"
 
 type AdditionalConfigs = Parameters<typeof typescriptPlugin.config>
 
@@ -24,6 +25,8 @@ interface ESLintConfigOptions {
 
   react?: { enabled?: boolean; options?: ReactOptions }
   reactHooks?: { enabled: boolean }
+
+  jsx?: { enabled?: boolean; a11y?: boolean }
 
   prettier?: PrettierOptions
   packageJson?: PackageJsonOptions
@@ -36,19 +39,14 @@ const defaultOptions: Required<ESLintConfigOptions> = {
   react: { enabled: false, options: { typeChecked: true } },
   reactHooks: { enabled: false },
 
+  jsx: { enabled: false, a11y: true },
+
   prettier: {
     experimentalOperatorPosition: "start",
     experimentalTernaries: true,
     semi: false,
   },
   packageJson: { package: false },
-}
-
-function optional(
-  enabled: boolean,
-  config: ReturnType<typeof typescriptPlugin.config>,
-): Array<ReturnType<typeof typescriptPlugin.config>> {
-  return enabled ? [config] : []
 }
 
 const eslintConfig = (
@@ -75,6 +73,11 @@ const eslintConfig = (
         ),
         ...optional(optionsWithDefaults.reactHooks.enabled, reactHooks()),
 
+        ...optional(
+          optionsWithDefaults.jsx.enabled,
+          jsx(optionsWithDefaults.jsx),
+        ),
+
         typescript(optionsWithDefaults.typescript.options),
         unicorn(),
         imports(),
@@ -82,7 +85,6 @@ const eslintConfig = (
         regexp(),
 
         // Stylistic
-        jsx(),
         prettier(optionsWithDefaults.prettier),
         perfectionist(),
       ],
