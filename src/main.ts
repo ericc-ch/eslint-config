@@ -85,7 +85,7 @@ const eslintConfig = (
         regexp(),
 
         // Stylistic
-        prettier(optionsWithDefaults.prettier),
+        prettier(optionsWithDefaults.prettier as PrettierOptions),
         perfectionist(),
       ],
     },

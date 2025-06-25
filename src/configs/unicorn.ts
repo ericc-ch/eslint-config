@@ -2,7 +2,6 @@ import unicornPlugin from "eslint-plugin-unicorn"
 import globals from "globals"
 import typescriptPlugin from "typescript-eslint"
 
-// eslint-disable-next-line max-lines-per-function
 export const unicorn = (): ReturnType<typeof typescriptPlugin.config> => {
   return typescriptPlugin.config({
     languageOptions: {
@@ -20,18 +19,19 @@ export const unicorn = (): ReturnType<typeof typescriptPlugin.config> => {
       "unicorn/no-anonymous-default-export": "error",
       "unicorn/no-array-callback-reference": "error",
       "unicorn/no-array-for-each": "error",
-      "unicorn/no-array-push-push": "error",
       "unicorn/no-document-cookie": "error",
       "unicorn/no-for-loop": "error",
       "unicorn/no-instanceof-builtins": "error",
       "unicorn/no-invalid-fetch-options": "error",
       "unicorn/no-invalid-remove-event-listener": "error",
-      "unicorn/no-length-as-slice-end": "error",
       "unicorn/no-lonely-if": "error",
       "unicorn/no-magic-array-flat-depth": "error",
       "unicorn/no-named-default": "error",
       "unicorn/no-new-array": "error",
       "unicorn/no-new-buffer": "error",
+      "unicorn/no-unnecessary-array-flat-depth": "error",
+      "unicorn/no-unnecessary-array-splice-count": "error",
+      "unicorn/no-unnecessary-slice-end": "error",
       "unicorn/no-unreadable-array-destructuring": "error",
       "unicorn/no-unreadable-iife": "error",
       "unicorn/no-unused-properties": "error",
@@ -57,6 +57,7 @@ export const unicorn = (): ReturnType<typeof typescriptPlugin.config> => {
       "unicorn/prefer-event-target": "error",
       "unicorn/prefer-export-from": "error",
       "unicorn/prefer-global-this": "error",
+      "unicorn/prefer-import-meta-properties": "error",
       "unicorn/prefer-includes": "error",
       "unicorn/prefer-json-parse-buffer": "error",
       "unicorn/prefer-keyboard-event-key": "error",
@@ -78,6 +79,7 @@ export const unicorn = (): ReturnType<typeof typescriptPlugin.config> => {
       "unicorn/prefer-regexp-test": "error",
       "unicorn/prefer-set-has": "error",
       "unicorn/prefer-set-size": "error",
+      "unicorn/prefer-single-call": "error",
       "unicorn/prefer-string-raw": "error",
       "unicorn/prefer-string-replace-all": "error",
       "unicorn/prefer-string-slice": "error",

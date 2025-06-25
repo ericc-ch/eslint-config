@@ -2,7 +2,7 @@ import prettierPlugin from "eslint-plugin-prettier/recommended"
 import { Config } from "prettier"
 import typescriptPlugin from "typescript-eslint"
 
-export type PrettierOptions = Record<string, unknown> & Config
+export type PrettierOptions = Config
 
 export const prettier = (
   options: PrettierOptions,
@@ -10,13 +10,7 @@ export const prettier = (
   return typescriptPlugin.config({
     extends: [prettierPlugin],
     rules: {
-      "prettier/prettier": [
-        "error",
-        options,
-        {
-          usePrettierrc: false,
-        },
-      ],
+      "prettier/prettier": ["error", options],
     },
   })
 }

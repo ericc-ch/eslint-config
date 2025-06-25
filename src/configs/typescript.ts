@@ -10,15 +10,29 @@ export interface TypeScriptOptions {
 type Rules = typeof configs.base.rules
 
 const getJsRules = (): Rules => ({
+  // https://eslint.org/docs/latest/rules/#possible-problems
   "array-callback-return": "error",
   "no-constructor-return": "error",
   "no-useless-assignment": "error",
   "accessor-pairs": "error",
   "require-atomic-updates": "error",
+
+  // https://eslint.org/docs/latest/rules/#suggestions
+  complexity: ["error", { max: 16 }],
   eqeqeq: "error",
   "default-param-last": "error",
   "default-case": "error",
   "default-case-last": "error",
+  "max-depth": "error",
+  "max-nested-callbacks": ["error", { max: 5 }],
+  "max-lines": [
+    "error",
+    { max: 800, skipBlankLines: true, skipComments: true },
+  ],
+  "max-lines-per-function": [
+    "error",
+    { max: 100, skipBlankLines: true, skipComments: true },
+  ],
   "max-params": "error",
   "guard-for-in": "error",
   "no-implicit-coercion": "error",
@@ -26,15 +40,6 @@ const getJsRules = (): Rules => ({
   "no-nested-ternary": "error",
   "no-param-reassign": "error",
   yoda: "error",
-
-  complexity: ["error", { max: 10 }],
-  "max-depth": "error",
-  "max-nested-callbacks": ["error", { max: 2 }],
-  "max-lines": ["error", { skipBlankLines: true, skipComments: true }],
-  "max-lines-per-function": [
-    "error",
-    { skipBlankLines: true, skipComments: true },
-  ],
 })
 
 const getTsRules = (): Rules => ({
