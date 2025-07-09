@@ -49,10 +49,12 @@ const defaultOptions: Required<ESLintConfigOptions> = {
   packageJson: { package: false },
 }
 
+export type Config = ReturnType<typeof typescriptPlugin.config>
+
 const eslintConfig = (
   options?: ESLintConfigOptions,
   ...additionalConfigs: AdditionalConfigs
-): ReturnType<typeof typescriptPlugin.config> => {
+): Config => {
   const optionsWithDefaults = defu(
     options,
     defaultOptions,
