@@ -9,7 +9,7 @@ export interface TypeScriptOptions {
 
 type Rules = typeof configs.base.rules
 
-const getJsRules = (): Rules => ({
+const jsRules: Rules = {
   // https://eslint.org/docs/latest/rules/#possible-problems
   "array-callback-return": "error",
   "no-constructor-return": "error",
@@ -40,9 +40,22 @@ const getJsRules = (): Rules => ({
   "no-nested-ternary": "error",
   "no-param-reassign": "error",
   yoda: "error",
-})
+}
 
-const getTsRules = (): Rules => ({
+const tsRules: Rules = {
+  "@typescript-eslint/array-type": ["error", { default: "generic" }],
+  "@typescript-eslint/no-confusing-void-expression": [
+    "error",
+    { ignoreArrowShorthand: true },
+  ],
+  "@typescript-eslint/no-misused-promises": [
+    "error",
+    { checksVoidReturn: false },
+  ],
+  "@typescript-eslint/no-unnecessary-condition": [
+    "error",
+    { allowConstantLoopConditions: true },
+  ],
   "@typescript-eslint/no-unused-vars": [
     "error",
     {
@@ -55,20 +68,11 @@ const getTsRules = (): Rules => ({
       ignoreRestSiblings: true,
     },
   ],
-  "@typescript-eslint/no-misused-promises": [
-    "error",
-    { checksVoidReturn: false },
-  ],
   "@typescript-eslint/restrict-template-expressions": [
     "error",
     { allowNumber: true },
   ],
-  "@typescript-eslint/array-type": ["error", { default: "generic" }],
-  "@typescript-eslint/no-unnecessary-condition": [
-    "error",
-    { allowConstantLoopConditions: true },
-  ],
-})
+}
 
 export const typescript = (
   options: TypeScriptOptions,
@@ -90,8 +94,8 @@ export const typescript = (
       parserOptions: { projectService: true, tsconfigRootDir: process.cwd() },
     },
     rules: {
-      ...getJsRules(),
-      ...getTsRules(),
+      ...jsRules,
+      ...tsRules,
     },
   })
 }
