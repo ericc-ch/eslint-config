@@ -82,20 +82,32 @@ export const typescript = (
   const configTypeStylistic: keyof typeof typescriptPlugin.configs =
     options.typeChecked ? "strictTypeChecked" : "strict"
 
-  return typescriptPlugin.config({
-    ignores: ["**/package.json"],
-    extends: [
-      eslint.configs.recommended,
-      typescriptPlugin.configs[configType],
-      typescriptPlugin.configs[configTypeStylistic],
-    ],
-    languageOptions: {
-      globals: { ...globals.browser, ...globals.node },
-      parserOptions: { projectService: true, tsconfigRootDir: process.cwd() },
+  return typescriptPlugin.config(
+    {
+      ignores: ["**/package.json"],
+      extends: [
+        eslint.configs.recommended,
+        typescriptPlugin.configs[configType],
+        typescriptPlugin.configs[configTypeStylistic],
+      ],
+      languageOptions: {
+        globals: { ...globals.browser, ...globals.node },
+        parserOptions: { projectService: true, tsconfigRootDir: process.cwd() },
+      },
+      rules: {
+        ...jsRules,
+        ...tsRules,
+      },
     },
-    rules: {
-      ...jsRules,
-      ...tsRules,
+
+    {
+      files: ["**/*.test.ts", "**/*.test.tsx", "**/*.test.js", "**/*.test.jsx"],
+      rules: {
+        "max-lines-per-function": [
+          "error",
+          { max: 200, skipBlankLines: true, skipComments: true },
+        ],
+      },
     },
-  })
+  )
 }
