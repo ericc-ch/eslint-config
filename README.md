@@ -1,6 +1,6 @@
 # @echristian/eslint-config
 
-A modern and opinionated ESLint configuration with TypeScript and JSX support.
+A modern and opinionated ESLint configuration with TypeScript, JSX, and Markdown support.
 
 ## Installation
 
@@ -45,7 +45,14 @@ interface ESLintConfigOptions {
 
   // TypeScript configuration
   typescript?: {
-    enabled: boolean  // defaults to true
+    options?: {
+      typeChecked?: boolean // defaults to true
+    }
+  }
+
+  // React configuration
+  react?: {
+    enabled?: boolean // defaults to false
     options?: {
       typeChecked?: boolean // defaults to true
     }
@@ -56,33 +63,32 @@ interface ESLintConfigOptions {
     enabled: boolean // defaults to false
   }
 
-  // Package.json rules configuration
-  packageJson?: {
+  // JSX configuration
+  jsx?: {
+    enabled?: boolean // defaults to false
+    a11y?: boolean // defaults to true
+  }
+
+  // Markdown configuration
+  markdown?: {
+    enabled?: boolean // defaults to false
     options?: {
-      public?: boolean // defaults to true
+      language?: "commonmark" | "gfm" // defaults to "commonmark"
+      frontMatter?: "yaml" | "toml" | "json" | false // defaults to false
     }
   }
-}
-```
 
-Default configuration:
-```javascript
-const defaults = {
-  ignores: [],
-  typescript: {
-    enabled: true,
-    options: {
-      typeChecked: true,
-    },
-  },
-  reactHooks: {
-    enabled: false,
-  },
-  packageJson: {
-    options: {
-      public: true,
-    },
-  },
+  // Prettier configuration
+  prettier?: {
+    experimentalOperatorPosition?: "start" | "end"
+    experimentalTernaries?: boolean
+    semi?: boolean
+  }
+
+  // Package.json rules configuration
+  packageJson?: {
+    package?: boolean // defaults to false
+  }
 }
 ```
 
@@ -105,7 +111,6 @@ import eslintConfig from "@echristian/eslint-config";
 
 export default eslintConfig({
   typescript: {
-    enabled: true,
     options: {
       typeChecked: false,
     },
@@ -119,25 +124,88 @@ export default eslintConfig({
 import eslintConfig from "@echristian/eslint-config";
 
 export default eslintConfig({
+  react: {
+    enabled: true
+  },
   reactHooks: {
+    enabled: true
+  },
+  jsx: {
     enabled: true
   }
 });
 ```
 
-### Private Package Configuration
+### Markdown Documentation Project
 
 ```javascript
 import eslintConfig from "@echristian/eslint-config";
 
 export default eslintConfig({
-  packageJson: {
+  markdown: {
+    enabled: true,
     options: {
-      public: false
+      language: "gfm", // GitHub Flavored Markdown
+      frontMatter: "yaml" // Enable YAML frontmatter support
     }
   }
 });
 ```
+
+### Full-Stack Project with Everything
+
+```javascript
+import eslintConfig from "@echristian/eslint-config";
+
+export default eslintConfig({
+  ignores: ["dist/", "build/"],
+  react: {
+    enabled: true
+  },
+  reactHooks: {
+    enabled: true
+  },
+  jsx: {
+    enabled: true
+  },
+  markdown: {
+    enabled: true,
+    options: {
+      language: "gfm",
+      frontMatter: "yaml"
+    }
+  }
+});
+```
+
+## Markdown Support
+
+The markdown configuration provides comprehensive linting for Markdown files using `@eslint/markdown`:
+
+### Features
+
+- **Markdown parsing**: Supports both CommonMark and GitHub Flavored Markdown
+- **Front matter support**: Optional YAML, TOML, or JSON front matter parsing
+- **Code block linting**: JavaScript/TypeScript code blocks within markdown are linted
+- **Comprehensive rules**: Validates headings, links, images, and table structure
+
+### Rules Included
+
+- `fenced-code-language`: Require languages for fenced code blocks
+- `heading-increment`: Enforce heading levels increment by one
+- `no-duplicate-definitions`: Disallow duplicate definitions
+- `no-empty-definitions`: Disallow empty definitions
+- `no-empty-images`: Disallow empty images
+- `no-empty-links`: Disallow empty links
+- `no-invalid-label-refs`: Disallow invalid label references
+- `no-missing-atx-heading-space`: Disallow headings without space after hash
+- `no-missing-label-refs`: Disallow missing label references
+- `no-missing-link-fragments`: Disallow invalid link fragments
+- `no-multiple-h1`: Disallow multiple H1 headings
+- `no-reversed-media-syntax`: Disallow reversed link/image syntax
+- `no-unused-definitions`: Disallow unused definitions
+- `require-alt-text`: Require alternative text for images
+- `table-column-count`: Validate table column consistency
 
 ## Dependencies
 
@@ -145,6 +213,7 @@ This config includes the following major dependencies:
 
 - `@eslint/js`: Core ESLint rules
 - `@eslint/json`: JSON support
+- `@eslint/markdown`: Markdown support
 - `typescript-eslint`: TypeScript support
 - `@stylistic/eslint-plugin`: Style-related rules
 - `eslint-plugin-unused-imports`: Unused imports management
@@ -154,6 +223,7 @@ This config includes the following major dependencies:
 - `eslint-plugin-de-morgan`: Logical expression optimization
 - `eslint-plugin-package-json`: Package.json validation
 - `eslint-plugin-react-hooks`: React Hooks linting rules
+- `@eslint-react/eslint-plugin`: React component linting
 
 ## License
 
