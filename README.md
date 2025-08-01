@@ -1,6 +1,6 @@
 # @echristian/eslint-config
 
-A modern and opinionated ESLint configuration with TypeScript, JSX, and Markdown support.
+A modern and opinionated ESLint configuration with TypeScript, JSX, CSS, and Markdown support.
 
 ## Installation
 
@@ -41,54 +41,55 @@ The configuration function accepts an options object with the following structur
 ```typescript
 interface ESLintConfigOptions {
   // Glob patterns to ignore
-  ignores?: Array<string>
+  ignores?: Array<string>;
 
   // TypeScript configuration
   typescript?: {
     options?: {
-      typeChecked?: boolean // defaults to true
-    }
-  }
+      typeChecked?: boolean; // defaults to true
+    };
+  };
 
   // React configuration
   react?: {
-    enabled?: boolean // defaults to false
+    enabled?: boolean; // defaults to false
     options?: {
-      typeChecked?: boolean // defaults to true
-    }
-  }
+      typeChecked?: boolean; // defaults to true
+    };
+  };
 
   // React Hooks configuration
   reactHooks?: {
-    enabled: boolean // defaults to false
-  }
+    enabled: boolean; // defaults to false
+  };
 
   // JSX configuration
   jsx?: {
-    enabled?: boolean // defaults to false
-    a11y?: boolean // defaults to true
-  }
+    enabled?: boolean; // defaults to false
+    a11y?: boolean; // defaults to true
+  };
 
   // Markdown configuration
   markdown?: {
-    enabled?: boolean // defaults to false
+    enabled?: boolean; // defaults to false
     options?: {
-      language?: "commonmark" | "gfm" // defaults to "commonmark"
-      frontMatter?: "yaml" | "toml" | "json" | false // defaults to false
-    }
-  }
+      language?: "commonmark" | "gfm"; // defaults to "gfm"
+      frontMatter?: "yaml" | "toml" | "json" | false; // defaults to false
+    };
+  };
 
   // Prettier configuration
   prettier?: {
-    experimentalOperatorPosition?: "start" | "end"
-    experimentalTernaries?: boolean
-    semi?: boolean
-  }
+    experimentalOperatorPosition?: "start" | "end";
+    experimentalTernaries?: boolean;
+    semi?: boolean;
+    // More prettier config
+  };
 
   // Package.json rules configuration
   packageJson?: {
-    package?: boolean // defaults to false
-  }
+    package?: boolean; // defaults to false
+  };
 }
 ```
 
@@ -125,18 +126,40 @@ import eslintConfig from "@echristian/eslint-config";
 
 export default eslintConfig({
   react: {
-    enabled: true
+    enabled: true,
   },
   reactHooks: {
-    enabled: true
+    enabled: true,
   },
   jsx: {
-    enabled: true
-  }
+    enabled: true,
+  },
 });
 ```
 
-### Markdown Documentation Project
+### Full-Stack Project with CSS
+
+```javascript
+import eslintConfig from "@echristian/eslint-config";
+
+export default eslintConfig({
+  ignores: ["dist/", "build/"],
+  react: {
+    enabled: true,
+  },
+  reactHooks: {
+    enabled: true,
+  },
+  jsx: {
+    enabled: true,
+  },
+  css: {
+    enabled: true,
+  },
+});
+```
+
+### Documentation Project with Markdown
 
 ```javascript
 import eslintConfig from "@echristian/eslint-config";
@@ -146,13 +169,13 @@ export default eslintConfig({
     enabled: true,
     options: {
       language: "gfm", // GitHub Flavored Markdown
-      frontMatter: "yaml" // Enable YAML frontmatter support
-    }
-  }
+      frontMatter: "yaml", // Enable YAML frontmatter support
+    },
+  },
 });
 ```
 
-### Full-Stack Project with Everything
+### Complete Project with All Features
 
 ```javascript
 import eslintConfig from "@echristian/eslint-config";
@@ -160,52 +183,23 @@ import eslintConfig from "@echristian/eslint-config";
 export default eslintConfig({
   ignores: ["dist/", "build/"],
   react: {
-    enabled: true
+    enabled: true,
   },
   reactHooks: {
-    enabled: true
+    enabled: true,
   },
   jsx: {
-    enabled: true
+    enabled: true,
   },
   markdown: {
     enabled: true,
     options: {
       language: "gfm",
-      frontMatter: "yaml"
-    }
-  }
+      frontMatter: "yaml",
+    },
+  },
 });
 ```
-
-## Markdown Support
-
-The markdown configuration provides comprehensive linting for Markdown files using `@eslint/markdown`:
-
-### Features
-
-- **Markdown parsing**: Supports both CommonMark and GitHub Flavored Markdown
-- **Front matter support**: Optional YAML, TOML, or JSON front matter parsing
-- **Code block linting**: JavaScript/TypeScript code blocks within markdown are linted
-- **Comprehensive rules**: Validates headings, links, images, and table structure
-
-### Rules Included
-
-- `fenced-code-language`: Require languages for fenced code blocks
-- `heading-increment`: Enforce heading levels increment by one
-- `no-duplicate-definitions`: Disallow duplicate definitions
-- `no-empty-definitions`: Disallow empty definitions
-- `no-empty-images`: Disallow empty images
-- `no-empty-links`: Disallow empty links
-- `no-invalid-label-refs`: Disallow invalid label references
-- `no-missing-atx-heading-space`: Disallow headings without space after hash
-- `no-missing-label-refs`: Disallow missing label references
-- `no-missing-link-fragments`: Disallow invalid link fragments
-- `no-multiple-h1`: Disallow multiple H1 headings
-- `no-reversed-media-syntax`: Disallow reversed link/image syntax
-- `no-unused-definitions`: Disallow unused definitions
-- `require-alt-text`: Require alternative text for images
-- `table-column-count`: Validate table column consistency
 
 ## Dependencies
 
@@ -213,6 +207,7 @@ This config includes the following major dependencies:
 
 - `@eslint/js`: Core ESLint rules
 - `@eslint/json`: JSON support
+- `@eslint/css`: CSS support
 - `@eslint/markdown`: Markdown support
 - `typescript-eslint`: TypeScript support
 - `@stylistic/eslint-plugin`: Style-related rules
