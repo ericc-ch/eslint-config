@@ -4,6 +4,7 @@ import gitignore from "eslint-config-flat-gitignore"
 import { RequiredDeep } from "type-fest"
 import typescriptPlugin from "typescript-eslint"
 
+import { cssConfig } from "./configs/css"
 import { deMorgan } from "./configs/de-morgan"
 import { imports } from "./configs/imports"
 import { jsx } from "./configs/jsx"
@@ -82,6 +83,9 @@ const eslintConfig = (
           optionsWithDefaults.jsx.enabled,
           jsx(optionsWithDefaults.jsx),
         ),
+
+        // CSS
+        cssConfig(),
 
         // Markdown
         ...optional(
