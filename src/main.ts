@@ -7,7 +7,6 @@ import typescriptPlugin from "typescript-eslint"
 import { deMorgan } from "./configs/de-morgan"
 import { imports } from "./configs/imports"
 import { jsx } from "./configs/jsx"
-import { MarkdownOptions } from "./configs/markdown"
 import { packageJson, PackageJsonOptions } from "./configs/package-json"
 import { perfectionist } from "./configs/perfectionist"
 import { prettier, PrettierOptions } from "./configs/prettier"
@@ -28,7 +27,6 @@ interface ESLintConfigOptions {
   reactHooks?: { enabled: boolean }
 
   jsx?: { enabled?: boolean; a11y?: boolean }
-  markdown?: { enabled?: boolean; options?: MarkdownOptions }
 
   prettier?: PrettierOptions
   packageJson?: PackageJsonOptions
@@ -42,7 +40,6 @@ const defaultOptions: Required<ESLintConfigOptions> = {
   reactHooks: { enabled: false },
 
   jsx: { enabled: false, a11y: true },
-  markdown: { enabled: false, options: { language: "gfm" } },
 
   prettier: {
     experimentalOperatorPosition: "start",
