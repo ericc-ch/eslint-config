@@ -4,11 +4,10 @@ import gitignore from "eslint-config-flat-gitignore"
 import { RequiredDeep } from "type-fest"
 import typescriptPlugin from "typescript-eslint"
 
-import { cssConfig } from "./configs/css"
 import { deMorgan } from "./configs/de-morgan"
 import { imports } from "./configs/imports"
 import { jsx } from "./configs/jsx"
-import { markdownConfig, MarkdownOptions } from "./configs/markdown"
+import { MarkdownOptions } from "./configs/markdown"
 import { packageJson, PackageJsonOptions } from "./configs/package-json"
 import { perfectionist } from "./configs/perfectionist"
 import { prettier, PrettierOptions } from "./configs/prettier"
@@ -82,15 +81,6 @@ const eslintConfig = (
         ...optional(
           optionsWithDefaults.jsx.enabled,
           jsx(optionsWithDefaults.jsx),
-        ),
-
-        // CSS
-        cssConfig(),
-
-        // Markdown
-        ...optional(
-          optionsWithDefaults.markdown.enabled,
-          markdownConfig(optionsWithDefaults.markdown.options),
         ),
 
         typescript(optionsWithDefaults.typescript.options),
