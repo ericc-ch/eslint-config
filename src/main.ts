@@ -7,7 +7,7 @@ import typescriptPlugin from "typescript-eslint"
 import { deMorgan } from "./configs/de-morgan"
 import { imports } from "./configs/imports"
 import { jsx } from "./configs/jsx"
-import { packageJson, PackageJsonOptions } from "./configs/package-json"
+import { packageJson } from "./configs/package-json"
 import { perfectionist } from "./configs/perfectionist"
 import { prettier, PrettierOptions } from "./configs/prettier"
 import { react, ReactOptions } from "./configs/react"
@@ -29,7 +29,6 @@ interface ESLintConfigOptions {
   jsx?: { enabled?: boolean; a11y?: boolean }
 
   prettier?: PrettierOptions
-  packageJson?: PackageJsonOptions
 }
 
 const defaultOptions: Required<ESLintConfigOptions> = {
@@ -46,7 +45,6 @@ const defaultOptions: Required<ESLintConfigOptions> = {
     experimentalTernaries: true,
     semi: false,
   },
-  packageJson: { package: false },
 }
 
 export type Config = ReturnType<typeof typescriptPlugin.config>
@@ -66,7 +64,7 @@ const eslintConfig = (
     {
       extends: [
         gitignore(),
-        packageJson(optionsWithDefaults.packageJson),
+        packageJson(),
 
         // React
         ...optional(
